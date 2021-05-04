@@ -19,13 +19,15 @@ def relu_func(x):
 def identify_func(x):
     return x
 
-def softmax_func(a):
-    max_a = np.max(a)
+def softmax_func(x):
+    if x.ndim == 2:
+        x = x.T
+        x = x - np.max(x, axis=0)
+        y = np.exp(x) / np.sum(np.exp(x), axis=0)
+        return y.T 
 
-    exp_a = np.exp(a - max_a)
-    sum_exp_a = np.sum(exp_a)
-    y = exp_a / sum_exp_a
-    return y
+    x = x - np.max(x) # 오버플로 대책
+    return np.exp(x) / np.sum(np.exp(x))
 
 def init_network():
     network = {}

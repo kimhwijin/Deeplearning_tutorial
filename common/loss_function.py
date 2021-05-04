@@ -20,12 +20,15 @@ def cross_entropy_error(y,t):
     -1 * sum of (t ln y) / batch_size 의 계산식
     정답 레이블과 출력 레이블의 오차를 log 함수를 통해 반환함
     '''
-    delta = 1e-7
     if y.ndim == 1:
         t = t.reshape(1, t.size)
         y = y.reshape(1, y.size)
-    
+        
+    # 훈련 데이터가 원-핫 벡터라면 정답 레이블의 인덱스로 반환
+    if t.size == y.size:
+        t = t.argmax(axis=1)
+             
     batch_size = y.shape[0]
-    return -np.sum(np.log(y[np.arange(batch_size),t])+ 1e-7) / batch_size
+    return -np.sum(np.log(y[np.arange(batch_size), t] + 1e-7)) / batch_size
 
 
