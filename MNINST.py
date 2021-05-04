@@ -16,10 +16,7 @@ def init_MNINST():
     #test
     img = x_train[0]
     label = t_train[0]
-    print(label)
-    print(img.shape)
     img = img.reshape(28,28)
-    print(img.shape)
     img_show(img)
 
 def get_data():
@@ -72,6 +69,3 @@ def test_with_batch_predict():
         accuracy_cnt += np.sum(p == t[i:i+batch_size])
 
     print("Accuracy :" + str(float(accuracy_cnt / len(x))))
-
-if __name__ == "__main__":
-    test_predict()  

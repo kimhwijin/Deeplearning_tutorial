@@ -21,6 +21,7 @@ def identify_func(x):
 
 def softmax_func(a):
     max_a = np.max(a)
+
     exp_a = np.exp(a - max_a)
     sum_exp_a = np.sum(exp_a)
     y = exp_a / sum_exp_a
@@ -52,18 +53,5 @@ def multi_layer_sigmoid(network, X):
     A3 = np.dot(Z2,W3) + B3
     Y = A3
     return Y
-
-network = init_network()
-x = np.array([1.0,0.5])
-y = multi_layer_sigmoid(network,x)
-print(y)
-
-
-x = np.arange(-5.0,5.0,0.1)
-y = sigmoid_func(x)
-plt.plot(x,y)
-plt.ylim(-0.1,1.1)
-plt.show()
-
 
 # %%
